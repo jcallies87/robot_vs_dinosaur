@@ -1,12 +1,12 @@
 from weapon import Weapon
-from dinosaur import Dinosaur
-class Robot:
-    def __init__(self):
-        self.robot_name = 'Alloy_Cat'
-        self.robot_health= 100
-        self.active_weapon = Weapon
 
-    def robot_attack(self, dinosaur):
-        dinosaur = Dinosaur
+class Robot:
+    def __init__(self, health):
+        self.robot_name = 'Alloy_Cat'
+        self.robot_health= health
+        self.active_weapon = Weapon()
         self.battle_damage = self.active_weapon.weapon_power
-        dinosaur.dinosaur_health -= (self.battle_damage)
+    def robot_attack(self):
+        from dinosaur import Dinosaur
+        dinosaur = Dinosaur(100)
+        dinosaur.dinosaur_health -= self.battle_damage

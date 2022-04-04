@@ -1,10 +1,11 @@
-from robot import Robot
-from dinosaur import Dinosaur
+
 
 class Battlefield:
     def __init__(self):
-        self.dino = Dinosaur
-        self.robot = Robot
+        from robot import Robot
+        from dinosaur import Dinosaur
+        self.dino = Dinosaur(100)
+        self.robot = Robot(100)
         self.dino_lost = False
         self.robot_lost = False
 
@@ -17,21 +18,19 @@ class Battlefield:
         print("Welcome to Robot vs Dinosaur")
 
     def battle_phase(self):
-        dino_hit = Dinosaur
-        robot_hit = Robot
-        epic_battle = self.dino_lost or self.robot_lost
+        epic_battle = self.dino.dinosaur_health >= 0 or self.robot.robot_health >= 0
         while epic_battle:
-            if dino_hit >= 0:
-                dino_hit.dino_attack
+            if self.dino.dinosaur_health >= 0 or self.robot.robot_health >= 0:
+                self.dino.dino_attack()
+                self.robot.robot_health >= 0
                 print(f" {self.robot.robot_name} has sustained {self.dino.attack_power} damage points.{self.robot.robot_name} has {self.robot.robot_health} damage points left.")
-                continue
-            elif robot_hit >= 0:
-                robot_hit.robot_attack
+                
+                self.robot.robot_attack()
                 print(f" {self.dino.dinosaur_name} has sustained {self.robot.battle_damage} damage points.{self.dino.dinosaur_name} has {self.dino.dinosaur_health} damage points left.")
                 continue
-            elif dino_hit <= 0:
+            elif self.dino.dinosaur_health <= 0:
                 return self.dino_lost == True
-            elif robot_hit <= 0:
+            elif self.robot.robot_health <= 0:
                 return self.robot_lost == True
 
 
