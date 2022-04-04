@@ -8,4 +8,5 @@ class Robot:
 
     def robot_attack(self, dinosaur):
         dinosaur = Dinosaur
-        dinosaur.dinosaur_health -= (self.active_weapon.weapon_power)
+        self.battle_damage = self.active_weapon.weapon_power
+        dinosaur.dinosaur_health -= (self.battle_damage)
